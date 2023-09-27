@@ -2,7 +2,7 @@ import sys  # helps to hand the app's termination and exit status
 import typing
 import time
 from MainApp import MainAppPage
-from PyQt6 import QtCore
+from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import (
     QApplication, 
     QFormLayout, 
@@ -57,34 +57,35 @@ class LandingWindow(QWidget): # was qwidget
 
         
 
-        # self.statusbar = self.statusBar()
-
 
     def login(self):
         acceptableUsernames = ['baby', 'trentonious', 'bubs', 'bubski', 'stinky', 'stinkiest butt', 'Mr. Foster', 'Noel', 'lovey', 'my love']
-        acceptablePassword = ['04/07/2023']
+        acceptablePassword = ['04/07/2023', '1'] # using the "1" for testing purposes
         if self.usernameInput.text() in acceptableUsernames:
             if self.pwdInput.text() in acceptablePassword:
-                # self.statusTip("Entering Innate Domain :)")
-                time.sleep(2) # delay window launch by 2 sec
+                msg = QMessageBox()
+                msg.setText("Entering Innate Domain :")
+                msg.setIconPixmap(QtGui.QPixmap("Photos\M_EntryImage.jpg").scaled(300, 200)) 
+                msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
+                msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
+                
+                time.sleep(1) # delay window launch by 2 sec
+                msg.exec()
                 self.mainApp = MainAppPage()
                 self.mainApp.show() # open the main app window
-                self.close
+                self.close()
             else:
                 msg = QMessageBox()
                 # msg.setIcon(QMessageBox.Critical)
-                msg.setText("EEEEE Wrong")
+                msg.setText("*EEEEEEEEEEEEEE* Wrong")
                 msg.setInformativeText('Not you forgetting our anniversary...')
                 msg.setWindowTitle("Wrong Password")
                 msg.exec()
-                # self.statusBar().showMessage("Not you forgetting our anniversary...")
-                # self.setStatusTip("Not you forgetting our anniversary...")
-                # self.showStatusbar()
                 
         else:
             msg = QMessageBox()
             # msg.setIcon(QMessageBox.Critical)
-            msg.setStyleSheet()
+            # msg.setStyleSheet()
             msg.setText("Womp Woooooomp")
             msg.setInformativeText("You have many nicknames, try another one lol")
             msg.setWindowTitle("Wrong Username")

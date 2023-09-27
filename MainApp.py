@@ -17,4 +17,4 @@ class MainAppPage(QWidget):
     def __init__(self):
         super().__init__(parent=None)
         self.resize(800, 600)
-        self.windowTitle("Innate Domain: Physics Labyrinth")
+        self.setWindowTitle("Innate Domain: Physics Labyrinth")
