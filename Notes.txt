@@ -1,0 +1,18 @@
+I am trying to generate a villain photo using AI to be used instead of Mahito
+best results came from: https://wepik.com/ai-generate?prompt=generate+a+picture+of+a+jujutsi+kaisen-inspired+character%2Fvillain+initiating+a+domain+expansion+%28this+character%2Fvillian+also+loves+physics+and+mazes%29&style=noStyle
+
+
+This is what I put in the text to image generator to create the villain:
+"generate a picture of a jujutsi kaisen-inspired character/villain (looks similar to mahito). 
+they should be wearing clear glasses, have dark red hair, and look like a nerdy and deranged 
+college physics student. the person is using hand signs that look like the physics right hand 
+rule to initiate a labyrinth domain expansion (this character/villain also loves physics and mazes)"
+
+This is what I put in the text to image generator to create the trent:
+"generate a picture of a jujutsi kaisen-inspired character/protagonist. They are african american, but 
+have caramel skin. The character has brown eyes, diamond earrings, tom ford clear glasses, and an 
+van dyke beard. They are wearing a long sleeve shirt that says "Mizzou" and look determined"
+
+This is what I put in the text to image generator to create the myself:
+"generate an anime drawing of a jujutsi kaisen-inspired protagonist. she is a dark skinned cameroonian 
+with single braids and black hair. she is in distress
