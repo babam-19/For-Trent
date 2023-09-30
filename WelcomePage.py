@@ -1,5 +1,6 @@
 import sys  # helps to hand the app's termination and exit status
 import time
+import pygame
 from MainApp import MainAppPage
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtWidgets import (
@@ -36,50 +37,57 @@ class LandingWindow(QWidget):
 
         # Title Label
         title = QLabel("- Welcome Mr. Foster -\n        Time to log in")
-        title.setStyleSheet("font-family: Arial; font-size: 20pt; color:black; background-color:purple")
-        layout.addWidget(title, 0, 0, 1, 5, QtCore.Qt.AlignmentFlag.AlignCenter) # layout.addWidget(title, 0, 0, 1, 2, QtCore.Qt.AlignmentFlag.AlignCenter)
+        # title.setFont(EndOfAnthropocene_font)
+        title.setStyleSheet("font-family: Arial; font-size: 20pt; color:black; background-color: #DEAC72; border-style: groove; border-width: 2px; border-radius: 10px; border-color: #7852A9")
+        layout.addWidget(title, 0, 0, 1, 5, QtCore.Qt.AlignmentFlag.AlignCenter) 
+        
+        # Text for Player 1
+        player1 = QLabel('Player 1')
+        player1.setStyleSheet("font-family: Arial; font-size: 17pt; color:white")
+        layout.addWidget(player1, 1, 3, 1, 2, QtCore.Qt.AlignmentFlag.AlignCenter)
 
         # Inserting image of the Player
         trentImage = QLabel()
         pixmap = QtGui.QPixmap('Photos/trent.png').scaled(200, 200)
+        trentImage.setStyleSheet('border-style: groove; border-width: 6px; border-radius: 10px; border-color: #4E6156')
         if not pixmap.isNull():
             trentImage.setPixmap(pixmap)
-            layout.addWidget(trentImage, 1, 3, 3, 2)
+            layout.addWidget(trentImage, 2, 3, 3, 2)
         else:
             print("Image file not found. Please check the file path.")
 
         # Username Label
         user = QLabel("Username:")
-        user.setStyleSheet("font-family: Arial; font-size: 14pt; color:black; background-color:purple")
+        user.setStyleSheet("font-family: Arial; font-size: 14pt; color:black; background-color: #DEAC72; border-style: groove; border-width: 2px; border-radius: 10px; border-color: #7852A9")
         user.setFixedHeight(30)
-        layout.addWidget(user, 1, 0)
+        layout.addWidget(user, 2, 0)
 
         # Password label
         pwd = QLabel("Password:")
-        pwd.setStyleSheet("font-family: Arial; font-size: 14pt; color:black; background-color:purple")
+        pwd.setStyleSheet("font-family: Arial; font-size: 14pt; color:black; background-color: #DEAC72; border-style: groove; border-width: 2px; border-radius: 10px; border-color: #7852A9")
         pwd.setFixedHeight(30)
-        layout.addWidget(pwd, 2, 0)
+        layout.addWidget(pwd, 3, 0)
 
         # Username Input
         self.usernameInput = QLineEdit(placeholderText = "Enter one of ur many nicknames")
-        layout.addWidget(self.usernameInput, 1, 1, 1, 2)
+        layout.addWidget(self.usernameInput, 2, 1, 1, 2)
 
         # Password Input
         self.pwdInput = QLineEdit(placeholderText = "Our anniversary (ex: 10/27/2020)") # that example date was the first time I texted trent (I said "it's brianna")
         self.pwdInput.setEchoMode(QLineEdit.EchoMode.Password)
-        layout.addWidget(self.pwdInput, 2, 1, 1, 2)
+        layout.addWidget(self.pwdInput, 3, 1, 1, 2)
 
         # Submit button that takes you into the login method
         self.submitButton = QPushButton("Submit")
         self.submitButton.setAutoDefault(True)
         self.submitButton.setDefault(True)
         self.submitButton.clicked.connect(self.login)
-        layout.addWidget(self.submitButton, 3, 1)
+        layout.addWidget(self.submitButton, 4, 1)
 
         # Cancel button that quits the application
         cancelButton = QPushButton("Cancel")
         cancelButton.clicked.connect(self.close)
-        layout.addWidget(cancelButton, 3, 2)
+        layout.addWidget(cancelButton, 4, 2)
 
     
     def login(self):
@@ -107,8 +115,9 @@ class LandingWindow(QWidget):
         else:
             if input_username in acceptableUsernames:
                 if input_password in acceptablePassword:
+                    self.close()
                     msg = QMessageBox()
-                    msg.setText("Trent,\nYou are now\nentering the Innate Domain :")
+                    msg.setText("Trent,\nYou are now entering\nthe Innate Domain :")
                     msg.setIconPixmap(QtGui.QPixmap("Photos\M_EntryImage.jpg").scaled(300, 200)) 
                     msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
                     msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
@@ -116,9 +125,19 @@ class LandingWindow(QWidget):
                     time.sleep(1) # delay window launch by 1 sec
                     
                     msg.exec()
+
+                    # running the game 
+                    window_size = (602, 602)
+                    screen = (window_size[0] + 150, window_size[-1])
+                    tile_size = 30
+                    screen = pygame.display.set_mode(screen)
+                    pygame.display.set_caption("Innate Domain: Physics Labyrinth")
+
+                    game = MainAppPage(screen)
+                    game.main(window_size, tile_size)
+
                     self.mainApp = MainAppPage()
                     self.mainApp.show() # open the main app window
-                    self.close()
                 else:
                     msg = QMessageBox()
                     msg.setText("*EEEEEEEEEEEEEE* Wrong")
