@@ -8,7 +8,7 @@ class Player:
         self.y = int(y)
         self.player_size = 10
         self.rect = pygame.Rect(self.x, self.y, self.player_size, self.player_size)
-        self.color = (250, 120, 60)
+        self.color = (255, 213, 154)#250, 120, 60)
         self.velX = 0
         self.velY = 0
         self.left_pressed = False

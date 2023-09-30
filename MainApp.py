@@ -1,21 +1,13 @@
 import sys  # helps to hand the app's termination and exit status
-import os
-import time
-import typing
 import pygame, sys
 from Maze import Maze
 from player import Player
 from game import Game
 from clock import Clock
-from PyQt6 import QtCore
+from PyQt6 import QtGui
 from PyQt6.QtWidgets import (
-    QApplication, 
-    QFormLayout, 
-    QLineEdit, 
-    QWidget,
-    QPushButton,
-    QLabel,
-    QGridLayout)
+    QMessageBox,
+    QWidget)
 
 class MainAppPage(QWidget):
     def __init__(self, screen):
@@ -41,9 +33,9 @@ class MainAppPage(QWidget):
         instructions1 = self.font.render('Use', True, self.message_color)
         instructions2 = self.font.render('Arrow Keys', True, self.message_color)
         instructions3 = self.font.render('to Move', True, self.message_color)
-        self.screen.blit(instructions1,(655,300))
-        self.screen.blit(instructions2,(610,331))
-        self.screen.blit(instructions3,(630,362))
+        self.screen.blit(instructions1,(675,300))
+        self.screen.blit(instructions2,(630,331))
+        self.screen.blit(instructions3,(650,362))
 
     # draws all configs; maze, player, instructions, and time
     def _draw(self, maze, tile, player, game, clock):
@@ -59,9 +51,16 @@ class MainAppPage(QWidget):
         if self.game_over:
             clock.stop_timer()
             self.screen.blit(game.message(),(610,120))
+            # msg = QMessageBox()
+            # msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
+            # msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(700, 400)) 
+            # msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
+            # msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
+            # msg.exec()
+
         else:
             clock.update_timer()
-        self.screen.blit(clock.display_timer(), (625,200))
+        self.screen.blit(clock.display_timer(), (650,200))
         pygame.display.flip()
 
     # main game loop
@@ -74,8 +73,8 @@ class MainAppPage(QWidget):
         maze.generate_maze()
         clock.start_timer()
         while self.running:
-            self.screen.fill("gray")
-            self.screen.fill( pygame.Color("darkslategray"), (603, 0, 752, 752))
+            self.screen.fill("black")
+            self.screen.fill( pygame.Color("black"), (603, 0, 752, 752))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
