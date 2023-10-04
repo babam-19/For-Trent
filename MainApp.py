@@ -55,13 +55,7 @@ class MainAppPage(QWidget):
         if self.game_over:
             clock.stop_timer()
             self.screen.blit(game.message(),(610,120))
-            # msg = QMessageBox()
-            # msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
-            # msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(700, 400)) 
-            # msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
-            # msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
-            # msg.exec()
-
+    
         else:
             clock.update_timer()
         self.screen.blit(clock.display_timer(), (650,200))
@@ -77,15 +71,16 @@ class MainAppPage(QWidget):
         maze.generate_maze()
         clock.start_timer()
 
-        # msg = QMessageBox()
-        # msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
-        # msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(700, 400)) 
-        # msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
-        # msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
-        
+        # initializing the music
+        pygame.mixer.init()
+        pygame.mixer.music.load("Misc/Toby Fox - Megalovania.mp3")
+        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.play(-1)
+
         while self.running:
             self.screen.fill("black")
             self.screen.fill( pygame.Color("black"), (603, 0, 752, 752))
+           
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -120,25 +115,33 @@ class MainAppPage(QWidget):
                 player.right_pressed = False
                 player.up_pressed = False
                 player.down_pressed = False
+
                 if not self.finalMessageIndicator:
+                    pygame.mixer.music.stop()
+                    pygame.mixer.music.load("Misc/Justin Bieber - That's What Love Is.mp3")
+                    pygame.mixer.music.set_volume(0.5)
+                    pygame.mixer.music.play()
                     msg = QMessageBox()
                     window_width, window_height = 1000,1000
                     msg.setFixedSize(window_width, window_height)
                     msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\n\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that make me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke. Your unwavering commitment to those you love. Your good looks (a plus). I could go on... but I love you for exactly who God made you to be :)\n\nI plan on returning each bit of time, love, and care you are so open and willing to give to me.\n\nHope you enjoyed the game lover boy :)\n\nWith love,\nEgg")
                     msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(200, 300)) 
-                    msg.addButton("Done Reading :)", QMessageBox.ButtonRole.AcceptRole)
-                    msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
+                    
+                    # adding button 
+                    button = msg.addButton("Done Reading :)", QMessageBox.ButtonRole.AcceptRole)
+                    button.setStyleSheet("background-color: purple; color: white")
+                    
+                    msg.setStyleSheet("font-family: Arial; background-color: black; color: white")
                     msg.exec()
+                    
                     # Setting the final message indicator to True (True as in the final message has shown and only shown once.... helps with the while loop problem of continuous execution)
                     self.finalMessageIndicator = True
-                    print(f"final message indicator is {self.finalMessageIndicator}")
+
             self._draw(maze, tile, player, game, clock)
             self.FPS.tick(60)
 
-        # Note for self, right now it breaks out of the loop, goes to execute the msg and all the windows close... maybe haveit break out of the loop,
-        # return false and then use the conditin with the false in te welcome page to execute the message
         return 0
-        # msg.exec()
+
         
         
       

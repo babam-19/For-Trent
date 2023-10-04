@@ -10,7 +10,8 @@ from PyQt6.QtWidgets import (
     QPushButton,
     QLabel,
     QGridLayout,
-    QMessageBox)
+    QMessageBox,
+    QVBoxLayout)
 
 
 
@@ -117,11 +118,13 @@ class LandingWindow(QWidget):
                 if input_password in acceptablePassword:
                     self.close()
                     msg = QMessageBox()
-                    msg.setText("Trent,\nYou are now entering\nthe Innate Domain :")
-                    msg.setIconPixmap(QtGui.QPixmap("Photos\M_EntryImage.jpg").scaled(300, 200)) 
-                    msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
-                    msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
-                    
+                    msg.setWindowTitle("*Very Evil Laugh*")
+                    msg.setText("Trent,\n\nYou and Brianna were fighting an Evil Physics Lab Partner Butsurigaku as they were trying to steal your lab work and pass it as their own! They initiated a domain expansion: Superstring Vortex Labyrinth. Within the Superstring Vortex Labyrinth, there are multiple interconnected pathways and chambers that represent the complex nature of superstrings and their vibrations. The challenge for those within this domain is to navigate through the intricate maze while combatting the power of superstring vibrations. You and Brianna are separated, and you must find her to escape the innate domain.\n\nYou have to find her!\n\nYou are now entering the Innate Domain:")
+                    msg.setIconPixmap(QtGui.QPixmap("Photos\M_EntryImage.jpg").scaled(200, 150)) 
+                    button = msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
+                    button.setStyleSheet("background-color: red")
+                    msg.setStyleSheet("font-family: Arial; color:white; background-color:black")
+
                     time.sleep(1) # delay window launch by 1 sec
                     
                     msg.exec()
@@ -131,7 +134,7 @@ class LandingWindow(QWidget):
                     screen = (window_size[0] + 150, window_size[-1])
                     tile_size = 30
                     screen = pygame.display.set_mode(screen)
-                    pygame.display.set_caption("Innate Domain: Physics Labyrinth")
+                    pygame.display.set_caption("Innate Domain: Superstring Vortex Labyrinth")
 
                     game = MainAppPage(screen)
                     game.main(window_size, tile_size)
@@ -155,7 +158,6 @@ class LandingWindow(QWidget):
 if __name__ == "__main__":
     app = QApplication([])
     window = LandingWindow()
-
     window.show()
     sys.exit(app.exec())
 
