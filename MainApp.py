@@ -13,9 +13,13 @@ class MainAppPage(QWidget):
     def __init__(self, screen):
         super().__init__(parent=None)
 
+        # to help with the game final message
+        self.finalMessageIndicator = 0
+
         # Initialize Pygame
         pygame.init()
         pygame.font.init()
+
 
         # Set up Pygame surface
         self.pygame_surface = pygame.display.set_mode((800, 600))
@@ -72,6 +76,12 @@ class MainAppPage(QWidget):
         clock = Clock()
         maze.generate_maze()
         clock.start_timer()
+        msg = QMessageBox()
+        msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
+        msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(700, 400)) 
+        msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
+        msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
+        
         while self.running:
             self.screen.fill("black")
             self.screen.fill( pygame.Color("black"), (603, 0, 752, 752))
@@ -109,5 +119,15 @@ class MainAppPage(QWidget):
                 player.right_pressed = False
                 player.up_pressed = False
                 player.down_pressed = False
+                self.finalMessageIndicator = 1
+                break
             self._draw(maze, tile, player, game, clock)
             self.FPS.tick(60)
+
+        # Note for self, right now it breaks out of the loop, goes to execute the msg and all the windows close... maybe haveit break out of the loop,
+        # return false and then use the conditin with the false in te welcome page to execute the message
+        return 0
+        # msg.exec()
+        
+        
+      
