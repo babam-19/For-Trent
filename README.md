@@ -39,7 +39,7 @@ Use this project to brighten your day or for whatever you like really.
 ## Acknowledgments
 
 This lovely project could not have been completed without the following libraries and projects:
-[Python GUI Programming Maze Game Tutorial](https://github.com/x4nth055/pythoncode-tutorials/tree/master/gui-programming/maze-game) repository by Michael Maranan for their maze game example, which served as a valuable reference and inspiration for our project.
+[Python GUI Programming Maze Game Tutorial](https://github.com/x4nth055/pythoncode-tutorials/tree/master/gui-programming/maze-game) repository by Michael Maranan.
 
 
 
