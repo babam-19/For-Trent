@@ -13,8 +13,8 @@ class MainAppPage(QWidget):
     def __init__(self, screen):
         super().__init__(parent=None)
 
-        # to help with the game final message
-        self.finalMessageIndicator = 0
+        # to help with the game final message (False as in the final message has not been displayed)
+        self.finalMessageIndicator = False
 
         # Initialize Pygame
         pygame.init()
@@ -76,11 +76,12 @@ class MainAppPage(QWidget):
         clock = Clock()
         maze.generate_maze()
         clock.start_timer()
-        msg = QMessageBox()
-        msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
-        msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(700, 400)) 
-        msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
-        msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
+
+        # msg = QMessageBox()
+        # msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
+        # msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(700, 400)) 
+        # msg.addButton("Allow", QMessageBox.ButtonRole.AcceptRole)
+        # msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
         
         while self.running:
             self.screen.fill("black")
@@ -119,8 +120,18 @@ class MainAppPage(QWidget):
                 player.right_pressed = False
                 player.up_pressed = False
                 player.down_pressed = False
-                self.finalMessageIndicator = 1
-                break
+                if not self.finalMessageIndicator:
+                    msg = QMessageBox()
+                    window_width, window_height = 1000,1000
+                    msg.setFixedSize(window_width, window_height)
+                    msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
+                    msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(200, 300)) 
+                    msg.addButton("Done Reading :)", QMessageBox.ButtonRole.AcceptRole)
+                    msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
+                    msg.exec()
+                    # Setting the final message indicator to True (True as in the final message has shown and only shown once.... helps with the while loop problem of continuous execution)
+                    self.finalMessageIndicator = True
+                    print(f"final message indicator is {self.finalMessageIndicator}")
             self._draw(maze, tile, player, game, clock)
             self.FPS.tick(60)
 

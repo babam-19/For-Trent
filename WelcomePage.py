@@ -133,23 +133,9 @@ class LandingWindow(QWidget):
                     screen = pygame.display.set_mode(screen)
                     pygame.display.set_caption("Innate Domain: Physics Labyrinth")
 
-                    print("launching game")
                     game = MainAppPage(screen)
                     game.main(window_size, tile_size)
 
-                    # # When the game ends, the main should return false
-                    print(f"the finaMessageIndicator is returned {game.finalMessageIndicator}")
-                    if game.finalMessageIndicator == 1:
-                        print("we are in the if statement")
-                        msg = QMessageBox()
-                        msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
-                        msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(700, 400)) 
-                        msg.addButton("Done", QMessageBox.ButtonRole.AcceptRole)
-                        msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
-                        msg.exec()
-
-                    # self.mainApp = MainAppPage()
-                    # self.mainApp.show() # open the main app window
                 else:
                     msg = QMessageBox()
                     msg.setText("*EEEEEEEEEEEEEE* Wrong")
@@ -163,6 +149,7 @@ class LandingWindow(QWidget):
                 msg.setInformativeText("You have many nicknames, try another one lol")
                 msg.setWindowTitle("Wrong Username")
                 msg.exec()
+    
         
 
 if __name__ == "__main__":
