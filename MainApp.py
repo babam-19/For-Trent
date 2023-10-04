@@ -124,7 +124,7 @@ class MainAppPage(QWidget):
                     msg = QMessageBox()
                     window_width, window_height = 1000,1000
                     msg.setFixedSize(window_width, window_height)
-                    msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that\nmake me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke.\nYour unwavering commitment to those you love. Your good looks (a plus). I could go on :) \n I plan on returning each bit of time, love, and care you are so open and willing to give to me. \n Hope you enjoyed the game lover boy :)\n\n With love,\n Egg")
+                    msg.setText("Trent,\nHappy 6 months! We made it! Through the late night phone calls and long days, by God's grace we made it.\n\nYou have been patient, attentive, and all round wonderful. It's not the things you do for me that make me love you. It's your silly smile and laugh that comes out whenever someone cracks a joke. Your unwavering commitment to those you love. Your good looks (a plus). I could go on... but I love you for exactly who God made you to be :)\n\nI plan on returning each bit of time, love, and care you are so open and willing to give to me.\n\nHope you enjoyed the game lover boy :)\n\nWith love,\nEgg")
                     msg.setIconPixmap(QtGui.QPixmap("Photos/picOfUs.jpeg").scaled(200, 300)) 
                     msg.addButton("Done Reading :)", QMessageBox.ButtonRole.AcceptRole)
                     msg.setStyleSheet("font-family: Fantasy; color:white; background-color:black")
