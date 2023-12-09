@@ -8,8 +8,6 @@ stressed me out).
 
 DO NOT READ ANY OF THE FILES (yet). I REPEAT, DO NOT READ ANY OF THE FILES.
 
-I love you!
-
 - Brianna <3
 
 ## Table of Contents
