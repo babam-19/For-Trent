@@ -2,8 +2,8 @@
 Hello Bubs,
 
 Here lies the Git Repo that I'm using to create a game that I made
-personalized to you to. Everything here was made with love no 
-celebrate our anniiversary (no matter how much GitHub and bash 
+personalized for you. Everything here was made with love to 
+celebrate our anniversary (no matter how much GitHub and bash 
 stressed me out).
 
 DO NOT READ ANY OF THE FILES (yet). I REPEAT, DO NOT READ ANY OF THE FILES.
